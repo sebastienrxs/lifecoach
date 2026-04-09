@@ -1,10 +1,619 @@
-<!-- Assuming the original content of the file is retained, please provide contents or confirm to just rename -->
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Sebastien Life Coach</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sébastien Lifecoach</title>
+  <style>
+    :root {
+      --bg: #f7f5f2;
+      --card: #ffffff;
+      --text: #1f1f1f;
+      --muted: #66625c;
+      --accent: #1f6feb;
+      --accent-soft: #eaf2ff;
+      --line: #e6e0d8;
+      --shadow: 0 12px 30px rgba(0,0,0,0.08);
+      --radius: 20px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #faf8f5 0%, #f3efe9 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 245, 242, 0.78);
+      border-bottom: 1px solid rgba(230, 224, 216, 0.7);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1.05rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .hero {
+      padding: 72px 0 44px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .card,
+    .pricing-card,
+    .extension-card,
+    .quote {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      max-width: 12ch;
+    }
+
+    .hero-copy p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 60ch;
+      margin: 18px 0 0;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--text);
+      color: white;
+      box-shadow: 0 10px 24px rgba(31,31,31,0.16);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .hero-card {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 14px;
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+      align-self: start;
+      max-width: 420px;
+      margin-left: auto;
+    }
+
+    .mini-label {
+      font-size: 0.84rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-card ul,
+    .card ul,
+    .pricing-card ul,
+    .extension-card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .hero-benefits {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-benefits li {
+      background: rgba(31, 111, 235, 0.05);
+      border: 1px solid rgba(31, 111, 235, 0.08);
+      border-radius: 14px;
+      padding: 10px 12px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    section {
+      padding: 28px 0;
+    }
+
+    .section-head {
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 65ch;
+    }
+
+    .grid-3,
+    .grid-2,
+    .extensions-grid,
+    .pricing-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-3,
+    .extensions-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2,
+    .pricing-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card,
+    .pricing-card,
+    .extension-card,
+    .quote {
+      padding: 26px;
+    }
+
+    .card h3,
+    .pricing-card h3,
+    .extension-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .card p,
+    .pricing-card p,
+    .extension-card p,
+    .quote p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .step {
+      display: inline-flex;
+      width: 36px;
+      height: 36px;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 12px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin: 4px 0 10px;
+      line-height: 1.1;
+    }
+
+    .price small {
+      display: block;
+      font-size: 0.98rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 6px;
+      line-height: 1.35;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #f4f1ec;
+      color: #5f5a53;
+      margin-bottom: 12px;
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(31, 111, 235, 0.25);
+      background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
+    }
+
+    .extensions-grid .extension-card:nth-child(1) { background: linear-gradient(180deg, #ffffff 0%, #fffaf5 100%); }
+    .extensions-grid .extension-card:nth-child(2) { background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%); }
+    .extensions-grid .extension-card:nth-child(3) { background: linear-gradient(180deg, #ffffff 0%, #fbf8ff 100%); }
+    .extensions-grid .extension-card:nth-child(4) { background: linear-gradient(180deg, #ffffff 0%, #f8fff9 100%); }
+    .extensions-grid .extension-card:nth-child(5) { background: linear-gradient(180deg, #ffffff 0%, #fff7fb 100%); }
+
+    .mission {
+      font-size: 0.98rem;
+      margin-top: 10px;
+      color: var(--text);
+    }
+
+    .quote {
+      text-align: center;
+      padding: 42px 28px;
+    }
+
+    .quote p {
+      font-size: clamp(1.2rem, 2.6vw, 2rem);
+      line-height: 1.35;
+      color: var(--text);
+      max-width: 28ch;
+      margin: 0 auto;
+    }
+
+    .footer-cta {
+      padding: 24px 0 72px;
+    }
+
+    .footer-box {
+      background: var(--text);
+      color: white;
+      border-radius: 28px;
+      padding: 38px;
+      box-shadow: var(--shadow);
+    }
+
+    .footer-box p {
+      color: rgba(255,255,255,0.78);
+      max-width: 60ch;
+      margin: 12px 0 0;
+    }
+
+    .footer-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-actions .btn-primary {
+      background: white;
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    .footer-actions .btn-secondary {
+      color: white;
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .small-note {
+      margin-top: 18px;
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .extensions-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .card,
+      .pricing-card,
+      .extension-card,
+      .quote,
+      .footer-box {
+        padding: 24px;
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to my life coaching service!</h1>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Sébastien Lifecoach</div>
+      <div class="nav-links">
+        <a href="#concept">Concept</a>
+        <a href="#fonctionnement">Fonctionnement</a>
+        <a href="#abonnements">Abonnements</a>
+        <a href="#extensions">Extensions</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Ton copilote de vie</div>
+        <h1>Simplifier ta vie, alléger ta charge mentale, t’aider à avancer.</h1>
+        <p>
+          Sébastien Lifecoach est un système d’accompagnement personnel pensé pour t’aider à gérer ta vie au quotidien : argent, organisation, décisions, habitudes et charge mentale. L’objectif n’est pas de te rajouter une méthode de plus, mais de te donner un cadre clair, rassurant et concret.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#abonnements">Découvrir les offres</a>
+          <a class="btn btn-secondary" href="#extensions">Voir les extensions</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <div class="mini-label">Ce que tu gagnes</div>
+        <div class="price">Plus de clarté<small>moins de chaos mental</small></div>
+        <ul class="hero-benefits">
+          <li>Des décisions plus simples</li>
+          <li>Des plans d’action concrets</li>
+          <li>Un cadre structurant mais léger</li>
+          <li>Un vrai soutien au quotidien</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="concept">
+      <div class="container">
+        <div class="section-head">
+          <h2>Le concept</h2>
+          <p>
+            Tu n’as pas à tout porter seule dans ta tête. Sébastien Lifecoach agit comme un cerveau externe bienveillant qui t’aide à remettre de l’ordre, clarifier les priorités et transformer les sujets lourds en actions simples.
+          </p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="step">1</div>
+            <h3>Clarifier</h3>
+            <p>On fait le tri entre ce qui compte vraiment, ce qui t’épuise et ce qui peut attendre.</p>
+          </article>
+          <article class="card">
+            <div class="step">2</div>
+            <h3>Décider</h3>
+            <p>Je t’aide à sortir du flou avec des choix clairs, réalistes et assumables.</p>
+          </article>
+          <article class="card">
+            <div class="step">3</div>
+            <h3>Agir</h3>
+            <p>Chaque sujet devient un plan d’action simple à suivre sans pression inutile.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="fonctionnement">
+      <div class="container">
+        <div class="section-head">
+          <h2>Comment ça fonctionne</h2>
+          <p>
+            Le système repose sur un accompagnement pratique, humain et structuré. Pas de théorie vide. Juste de la clarté, des décisions et des actions adaptées à ta vraie vie.
+          </p>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Ce que je fais avec toi</h3>
+            <ul>
+              <li>Analyser ta situation</li>
+              <li>Définir les vraies priorités</li>
+              <li>Créer un plan d’action concret</li>
+              <li>T’aider à trancher quand tu bloques</li>
+              <li>Te recadrer et te rassurer si besoin</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Le ton de l’accompagnement</h3>
+            <ul>
+              <li>Structurant sans être rigide</li>
+              <li>Rassurant sans être infantilisant</li>
+              <li>Léger, simple et un peu fun</li>
+              <li>Humain, direct et sans jugement</li>
+              <li>Orienté résultats concrets</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="quote">
+          <p>Tu n’as pas besoin d’être parfaite. Tu as besoin d’un système qui t’aide à mieux fonctionner dans ta vraie vie.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="abonnements">
+      <div class="container">
+        <div class="section-head">
+          <h2>Les abonnements</h2>
+          <p>
+            Le temps et le niveau d’accompagnement dépendent de la formule choisie. L’idée est simple : plus le besoin est fort, plus le système devient présent et impliqué.
+          </p>
+        </div>
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <div class="tag">Essentiel</div>
+            <h3>Base Lifecoach</h3>
+            <div class="price">Sur mesure</div>
+            <p>Une base d’accompagnement pour t’aider à structurer ton quotidien et remettre de l’ordre dans les sujets les plus importants.</p>
+            <ul style="margin-top:16px;">
+              <li>Priorités claires</li>
+              <li>Plans d’action simples</li>
+              <li>Aide à la décision</li>
+              <li>Cadre global rassurant</li>
+            </ul>
+          </article>
+          <article class="pricing-card featured">
+            <div class="tag">Modulable</div>
+            <h3>Base + extensions</h3>
+            <div class="price">À composer</div>
+            <p>Tu pars d’un socle de coaching de vie et tu ajoutes uniquement les sujets où tu veux être accompagnée de façon plus précise.</p>
+            <ul style="margin-top:16px;">
+              <li>Approche personnalisée</li>
+              <li>Extensions cumulables</li>
+              <li>Temps d’implication adaptable</li>
+              <li>Expérience flexible selon ton rythme</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="extensions">
+      <div class="container">
+        <div class="section-head">
+          <h2>Les extensions</h2>
+          <p>
+            Chaque extension répond à un besoin précis. Elles peuvent être prises seules dans le cadre du système ou combinées pour créer un accompagnement plus complet.
+          </p>
+        </div>
+        <div class="extensions-grid">
+          <article class="extension-card">
+            <div class="tag">15€ / mois</div>
+            <h3>Gestion Budgétaire</h3>
+            <p class="mission">T’aider à mieux gérer ton argent avec un cadre simple, clair et rassurant pour réduire le stress financier et prendre de meilleures décisions.</p>
+          </article>
+          <article class="extension-card">
+            <div class="tag">12€ / mois</div>
+            <h3>Organisation & Planning</h3>
+            <p class="mission">Transformer le chaos de ton quotidien en un planning simple et réaliste pour que tu saches toujours quoi faire sans t’éparpiller.</p>
+          </article>
+          <article class="extension-card">
+            <div class="tag">10€ / mois</div>
+            <h3>Aide à la Décision</h3>
+            <p class="mission">T’aider à trancher plus vite quand tu hésites avec des options claires et des décisions assumables.</p>
+          </article>
+          <article class="extension-card">
+            <div class="tag">14€ / mois</div>
+            <h3>Charge Mentale & Clarté</h3>
+            <p class="mission">Vider ta tête, remettre de l’ordre dans tes pensées et te redonner de l’espace mental pour avancer plus sereinement.</p>
+          </article>
+          <article class="extension-card">
+            <div class="tag">18€ / mois</div>
+            <h3>Sport & Nutrition</h3>
+            <p class="mission">T’aider à bouger et manger mieux sans pression ni perfection, avec un cadre simple et des habitudes adaptées à ton vrai rythme de vie.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="grid-2">
+          <article class="card">
+            <h3>Pour qui c’est fait</h3>
+            <p>Pour une personne qui a beaucoup de choses en tête, qui veut avancer plus sereinement, mieux décider, mieux s’organiser et se sentir soutenue sans être jugée.</p>
+          </article>
+          <article class="card">
+            <h3>Résultat attendu</h3>
+            <p>Moins de chaos, moins de charge mentale, plus de clarté, plus de fluidité dans les décisions, et un quotidien mieux tenu sans s’épuiser.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="footer-cta">
+    <div class="container">
+      <div class="footer-box">
+        <h2>Prête à te sentir plus légère et plus claire dans ta vie ?</h2>
+        <p>
+          Sébastien Lifecoach est là pour t’aider à simplifier ce qui te pèse, décider plus sereinement et avancer avec un cadre concret, humain et adapté à toi.
+        </p>
+        <div class="footer-actions">
+          <span class="btn btn-primary">Demander ton accompagnement</span>
+          <span class="btn btn-secondary">Composer tes extensions</span>
+        </div>
+        
+      </div>
+    </div>
+  </section>
 </body>
 </html>
